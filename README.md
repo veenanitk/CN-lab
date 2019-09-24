@@ -22,7 +22,7 @@ $ sudo synaptic
 
 Valgrind
 $ ./waf configure --disable-gtk --enable-examples --enable-tests
-## ./waf --command-template="valgrind --leak-check=full --show-reachable=yes --track-origins=yes %s --suite=isotropic-antenna-model" --run scratch/first
+./waf --command-template="valgrind --leak-check=full --show-reachable=yes --track-origins=yes %s --suite=isotropic-antenna-model" --run scratch/first
 
 https://www.nsnam.org/docs/manual/html/test-framework.html
 $./test.py
