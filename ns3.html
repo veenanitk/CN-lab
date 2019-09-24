@@ -1,0 +1,268 @@
+<h2>1.</h2>
+
+<h3>ns-3</h3>
+ns-3 is a discrete-event network simulator, targeted primarily for research and educational use. ns-3 is free software, licensed under the GNU GPLv2 license, and is publicly available for research, development, and use.
+
+The goal of the ns-3 project is to develop a free and open source simulation environment suitable for networking research: it should be aligned with the simulation needs of modern networking research and should encourage community contribution, peer review, and validation of the software. ns-3 is maintained by a worldwide team of volunteer maintainers.
+
+
+
+<h3>Tcpdump </h3>
+Tcpdump is a type of packet analyzer software utility that monitors and logs TCP/IP traffic passing between a network and the computer on which it is executed.
+
+Tcpdump is an open-source network utility that is freely available under the BSD license. Tcpdump works on the command line interface and provides descriptions of packet content in several formats, depending on the command used.
+
+<h3>Wireshark?</h3>
+Wireshark is a network packet analyzer. A network packet analyzer will try to capture network packets and tries to display that packet data as detailed as possible.
+
+<h3>gnuplot</h3> 
+gnuplot is a command-line program that can generate two- and three-dimensional plots of functions, data, and data fits. The program runs on all major computers and operating systems (Linux, Unix, Microsoft Windows, macOS, and others). 
+
+<h3>NetAnim</h3> 
+NetAnim is an offline animator based on the Qt toolkit. It currently animates the simulation using an XML trace file collected during simulation.
+
+<h3>PyViz</h3> 
+PyViz is a coordinated effort to make data visualization in Python easier to use, learn and more powerful. PyViz consists of a set of open-source Python packages to work effortlessly with both small and large datasets right in the web browsers.
+
+
+<h3>waf</h3>
+Waf is a Python-based framework for configuring, compiling and installing applications.
+<br><br> Here are perhaps the most important features of Waf:
+
+<br>
+Automatic build order: the build order is computed from input and output files, among others
+<br>
+Automatic dependencies: tasks to execute are detected by hashing files and commands
+<br>
+Performance: tasks are executed in parallel automatically, the startup time is meant to be fast (separation between configuration and build)
+<br>
+Flexibility: new commands and tasks can be added very easily through subclassing, bottlenecks for specific builds can be eliminated through dynamic method replacement
+<br>
+Extensibility: though many programming languages and compilers are already supported by default, many others are available as extensions
+<br>
+IDE support: Eclipse, Visual Studio and Xcode project generators (waflib/extras/)
+<br>
+Documentation: the application is based on a robust model documented in The Waf Book and in the API docs
+<br>
+
+Python compatibility: cPython 2.5 to 3.x, Jython 2.5, IronPython, and Pypy.
+
+<h3>Wscript</h3>
+This dependency is specified in the wscript file. 
+
+<h3>classes and container</h3>
+Helpers and Containers, both are high level APIs, and are used to make programming in ns-3 easier (as you said in case of helper).
+ The difference is that helper APIs create a single object of a class whereas container APIs can create multiple objects of same type.
+For example, when you want to create multiple nodes in ns-3, you use NodeContainer API which internally creates the specified number of nodes.
+Similarly, when you want to make a CSMA channel, you use a CsmaHelper which creates a single channel object.
+
+<h3>flow pointer</h3>
+The Flow Monitor module goal is to provide a flexible system to measure the performance of network protocols. The module uses probes, installed in network nodes, to track the packets exchanged by the nodes, and it will measure a number of parameters. Packets are divided according to the flow they belong to, where each flow is defined according to the probe’s characteristics (e.g., for IP, a flow is defined as the packets with the same {protocol, source (IP, port), destination (IP, port)} tuple.
+
+
+ <br>
+
+ <h2>week 2.</h2>
+
+
+ <h3>Plot a Line graph for TCP congestion window (cwnd) using gnuplot</h3>
+
+Configure ns-3 using command: ./waf configure --enable-examples<br>
+Build ns-3 using command: ./waf<br>
+Run the example tcp-variants-comparison.cc using below command:
+$ ./waf --run "tcp-variants-comparison --tracing=true"<br>
+$ gnuplot
+$ set terminal png size 600,400<br>
+$ set output "cnmd.png"<br>
+$ plot "TcpVariantsComparison-cwnd.data" using 1:2 with linespoints title "congeston window" lw 2
+<br>
+
+<strong>https://www.youtube.com/watch?v=Y37DTIF-kRQ</strong>
+<!-- <h4>--------------------------</h4>
+create 2 files
+<br>
+<strong>x.txt</strong>
+1 34.5 45 12000<br>
+2 36.4 34 24000<br>
+3 38.7 22 34000<br>
+4 32.3 18 43000<br>
+5 41.5 24 23456<br>
+6 35.6 36 12345<br>
+7 24.5 67 67987<br>
+8 56.7 54 45678<br>
+9 62.3 27 32123<br>
+10 65.4 33 8999<br>
+
+<strong>y.plt</strong>
+set terminal pdf<br>
+set output "veena4.pdf"<br>
+set title "students Data"<br>
+set xlabel "Number of Days"<br>
+set ylabel "Students Info"<br>
+plot "x.txt" using 1:2 with impulse title "classes" lw 2,"x.txt" using 1:3 with linespoints title "number" lw 2<br>
+
+
+set terminal png size 600,400<br>
+set output "atten.png"<br>
+set title "Students Data"<br>
+set xlabel "Number of Days"<br>
+set ylabel "students attendance"<br>
+plot "x.txt" using 1:4 with linespoints title "attendance in days." lw 2, 20000 title "Minimum attendance"<br>
+<br>
+and run $gnuplot filename.plt
+<br>
+<h4>----------------------------</h4>
+ -->
+
+<h3>Pyviz</h3>
+$ cd ns-allinone-3.30/netanim-3.108<br>
+$ ./waf --pyrun src/flow-monitor/examples/wifi-olsr-flowmon.py --vis<br>
+
+<h3>NetAnim</h3>
+
+$ sudo apt-get install qt5-default mercurial<br>
+$ sudo synaptic<br>
+
+<strong>In different window</strong>
+$ cd ns-allinone-3.30/netanim-3.108<br>
+$ make clean<br>
+$ qmake NetAnim.pro<br>
+$ make<br>
+
+scratch/first.cc
+( #include "ns3/netanim-module.h"<br>
+	AnimationInterface anim ("anim1.xml");
+  anim.SetConstantPosition(nodes.Get(0), 1.0, 2.0);<br>
+  anim.SetConstantPosition(nodes.Get(1), 2.0, 3.0);
+  )
+  <br>
+
+$ ./waf --run scratch/first<br>
+$ cd ..<br>
+$ cd netanim-3.108<br>
+$ ./NetAnim<br>
+
+select a file (anim1.xml) from ns-3.30<br>
+
+https://www.youtube.com/watch?v=HRAjKRrvgh4<br>
+
+<h3>What are test cases and test suites in ns-3? How to run and write test cases in ns-3?</h3>
+https://www.nsnam.org/docs/manual/html/test-framework.html<br>
+$./test.py<br>
+
+
+<h3>Ping a real host by using the emulation feature of ns-3</h3>
+ns-allinone-3.30/ns-3.30/src/fd-net-device/examples/fd-emu-ping.cc<br>
+make changes such as device name, local ip address,netmask,gateway line no. (96,97,109,112.193) using netstat -rn and ifconfig<br>
+
+sudo ifconfig devicename promisc<br>
+Sudo ./waf --run scratch/file name<br>
+
+
+<br>
+<h2>week 3</h2>
+
+<h3>Compare the congestion window plots for TCP Newreno and TCP Highspeed</h3>
+copy fifth.cc to scratch<br>
+./waf --run fifth<br>
+./waf --run fifth >cwnd.dat 2>&1<br>
+gnuplot<br>
+set terminal png size 640,480<br>
+set output "cwnd.png"<br>
+plot "cwnd.dat" using 1:2 title 'congestion window' with linespoints <br>
+
+<h5>TCp high speed</h5>
+   std::string transport_prot="ns3::TcpHighSpeed";<br>
+   add above line just after the main() in fifth.cc;<br>
+   ./waf --run fifth >cwnd2.dat 2>&1<br>
+gnuplot<br>
+set terminal png size 640,480<br>
+set output "cwndcompare.png"<br>
+plot "cwnd.dat" using 1:2 with linespoints lw 2,"cwnd2.dat" using 1:2 with linespoints lw 2 <br>
+
+
+
+<h3>Set breakpoints at three places in star.cc and list all of them using gdb<br>Print the data type of the variables in star.cc using gdb (GNU Debugger)</h3>
+
+Copy star.cc from examples/tcp to scratch<br>
+Configure and build ns-3.<br>
+Execute command: ./waf shell<br>
+Execute command: gdb build/scratch/star<br>
+(gdb)r<br>
+(gdb)break main
+(gdb)break address
+(gdb)break CommandLine
+(gdb)ptype nSpokes<br>(nSpokes=(var_name));<br>
+
+<h3>How to use Valgrind to detect memory leaks.</h3>
+./waf configure --disable-gtk --enable-examples --enable-tests<br>
+./waf --valgrind --run first<br>
+(./waf --command-template="valgrind [options] %s [test-runner options]" --run test-runner)<br>
+
+//example
+./waf --command-template="valgrind --leak-check=full --show-reachable=yes --track-origins=yes %s --suite=isotropic-antenna-model" --run scratch/first<br>
+
+
+<h3>Enable support of flow monitor in tcp-bulk-send.cc</h3>
+// Flow monitor
+<br>
+ #include "ns3/flow-monitor-helper.h"<br>
+ bool flow_monitor=true;<br>
+ bool tracing=true;<br>
+<br>
+ /*before ("Run simulation")*/<br><br>
+ if(tracing){<br>
+    AsciiTraceHelper ascii;<br>
+      pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("tcp-bulk-sendflow.tr"));<br>
+      pointToPoint.EnablePcapAll ("tcp-bulk-send", false);<br>
+    }
+<br><br>
+ /*after ("Run simulation")*/
+<br><br>
+    Ptr<FlowMonitor> flowMonitor;<br>
+  FlowMonitorHelper flowHelper;<br>
+  if (flow_monitor)<br>
+  {
+     flowMonitor = flowHelper.InstallAll();
+   }<br>
+<br>
+   /*after   Simulator::Run ();  */
+<br><br>
+  if (flow_monitor)<br>
+  {
+     flowMonitor->SerializeToXmlFile("TcpVariantsComparison.flowmonitor", true, true);
+    }
+
+<br>
+   <h3>Modify first.cc to support IPv6 addressing</h3>
+
+     // Ipv4AddressHelper address;<br>
+  // address.SetBase ("10.1.1.0", "255.255.255.0");
+<br>
+  // Ipv4InterfaceContainer interfaces = address.Assign (devices);
+<br>
+  Ipv6AddressHelper ipv6;<br>
+  ipv6.SetBase (Ipv6Address ("2001:1::"), Ipv6Prefix (64));<br>
+  Ipv6InterfaceContainer interfaces = ipv6.Assign (devices);<br>
+
+   UdpEchoClientHelper echoClient (interfaces.GetAddress (1,1), 9);//(1)changed to (1,1)<br>
+
+
+
+<h2>Week 4</h2>
+
+<h3>Write a single flow ns-3 example program with different-</h3>
+TCP Extensions<br>
+Advertised window sizes<br>
+Queue limits on the bottleneck link//no need<br>
+TCP Segment sizes<br>
+Plot graphs using gnuplot<br>
+
+./waf --run "tcp-variants-comparison --transport_prot='TcpWestwood'/'TcpHighSpeed'/'TcpNewReno' --bandwidth='5Mbps' --prefix_file_name='abc' --tracing=true"<br>
+
+    ##   1.Change transport_prot <br>
+    ##   3.   Change ns3::TcpSocket::RcvBufSize<br>
+    ##   4.   mtu_bytes<br>
+
+    <br><br>
+<strong>--------------end------------</strong>
